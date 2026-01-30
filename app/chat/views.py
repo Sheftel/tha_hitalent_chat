@@ -40,7 +40,6 @@ class ChatDetailView(APIView):
         def get_messages(self, chat):
             limit = self.context.get('limit')
             messages = chat.messages.order_by("-created_at").all()[:limit]
-            print(messages)
             MessageSerializer(messages, many=True)
             return MessageSerializer(messages, many=True).data
 
