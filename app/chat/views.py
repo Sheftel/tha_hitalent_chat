@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework import serializers, status
 from rest_framework.response import Response
 
-from chat.models import Chat
+from chat.models.chat import  Chat
 from chat.selectors import chat_retrieve
 from chat.services import chat_create, message_create, chat_delete
 from chat.serializers import MessageSerializer

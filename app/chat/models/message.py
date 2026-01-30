@@ -1,6 +1,7 @@
 from django.db import models
 
-from chat.models import BaseModel, Chat
+from chat.models.base import BaseModel
+from chat.models.chat import  Chat
 
 
 class Message(BaseModel):

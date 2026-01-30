@@ -1,6 +1,7 @@
 from django.db.models import Prefetch
 
-from chat.models import Chat, Message
+from chat.models.chat import  Chat
+from chat.models.message import Message
 
 
 def chat_retrieve(
