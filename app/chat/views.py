@@ -64,7 +64,7 @@ class ChatDetailView(APIView):
         if chat is None:
             raise Http404
 
-        chat_delete(chat_id)
+        chat_delete(chat)
 
         return Response(status.HTTP_204_NO_CONTENT)
 
