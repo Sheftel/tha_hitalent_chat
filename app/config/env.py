@@ -5,7 +5,7 @@ env = environ.Env()
 
 BASE_DIR = environ.Path(__file__) - 2
 ROOT_DIR = environ.Path(__file__) - 3
-print(BASE_DIR)
+
 def env_to_enum(enum_cls, value):
     for x in enum_cls:
         if x.value == value:
