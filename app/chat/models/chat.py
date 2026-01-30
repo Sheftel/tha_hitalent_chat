@@ -9,3 +9,7 @@ class Chat(BaseModel):
 
     def __str__(self):
         return 'Chat %d: %s' % (self.id, self.title)
+
+    def clean(self):
+        if self.title:
+            self.title = self.title.strip()
