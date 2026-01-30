@@ -81,6 +81,11 @@ class MessageCreateView(APIView):
         serializer = self.InputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
+        chat = chat_retrieve(chat_id)
+
+        if chat is None:
+            raise Http404
+
         message = message_create(chat_id=chat_id, **serializer.validated_data)
         data = self.OutputSerializer(message).data
 

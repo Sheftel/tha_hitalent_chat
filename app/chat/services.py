@@ -16,6 +16,7 @@ def message_create(
     chat_id: int,
     text: str,
 ) -> Message:
+
     message = Message(chat_id=chat_id, text=text)
     message.full_clean()
     message.save()
