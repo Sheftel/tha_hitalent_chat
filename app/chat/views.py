@@ -31,6 +31,9 @@ class ChatCreateView(APIView):
 
 
 class ChatDetailView(APIView):
+    class LimitSerializer(serializers.Serializer):
+        limit = serializers.IntegerField(max_value=100)
+
     class OutputSerializer(serializers.ModelSerializer):
         messages = serializers.SerializerMethodField()
         class Meta:
@@ -45,14 +48,13 @@ class ChatDetailView(APIView):
 
 
     def get(self, request, chat_id):
-        limit = request.query_params.get('limit', 20)
-        limit = int(limit) if limit.isdigit() else 20
-        limit = 100 if limit > 100 else limit
-
         chat = chat_retrieve(chat_id)
         if chat is None:
             raise Http404
 
+        limit_serializer = self.LimitSerializer(data=request.query_params)
+        limit_serializer.is_valid(raise_exception=True)
+        limit = limit_serializer.validated_data.get('limit')
 
         data = self.OutputSerializer(chat, context={'limit':limit}).data
 
