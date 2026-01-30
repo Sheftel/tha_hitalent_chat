@@ -45,7 +45,8 @@ class ChatDetailView(APIView):
 
 
     def get(self, request, chat_id):
-        limit = int(request.query_params.get('limit', 20))
+        limit = request.query_params.get('limit', 20)
+        limit = int(limit) if limit.isdigit() else 20
         limit = 100 if limit > 100 else limit
 
         chat = chat_retrieve(chat_id)
